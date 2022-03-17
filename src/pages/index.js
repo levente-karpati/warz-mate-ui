@@ -3,6 +3,7 @@ import '../layouts/main.css'
 
 //component imports
 import Navbar from "../components/navbar"
+import Content from '../components/content'
 
 //responsive container size to view width/height
 const mainStyles = {
@@ -14,6 +15,7 @@ function App() {
   return (
     <div style={mainStyles}>
       <Navbar></Navbar>
+      <Content></Content>
     </div>
   );
 }
