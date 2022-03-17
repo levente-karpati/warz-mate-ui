@@ -11,7 +11,7 @@ const navStyles = {
     flexDirection: 'row',
     justifyContent: 'space-evenly'
 }
-//navbar link styling
+//navbar link component styling
 const StyledLink = styled(props => <Link {...props} />)`
     width: 33.33%;
     color: 'white';
