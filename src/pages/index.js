@@ -19,7 +19,11 @@ const homeStyles = {
 const homeImgStyles = {
   position: 'absolute',
   left: '0px',
-  bottom: '0px'
+  bottom: '0px',
+  maxWidth:'350px',
+  maxHeight:'350px',
+  width: 'auto',
+  height: 'auto'
 }
 
 function App() {
