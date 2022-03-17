@@ -22,10 +22,11 @@ const StyledLink = styled(props => <Link {...props} />)`
     color: white;
     border: 2px solid black;
     text-decoration: none;
+    font-size: 1.1em;
     
     &:hover{
         color:pink;
-        font-size: 1.05em;
+        font-size: 1.2em;
     }
 `;
 

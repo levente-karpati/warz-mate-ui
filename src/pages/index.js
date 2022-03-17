@@ -25,8 +25,8 @@ const homeImgStyles = {
   position: 'absolute',
   left: '0px',
   bottom: '0px',
-  maxWidth:'350px',
-  maxHeight:'350px',
+  maxWidth:'250px',
+  maxHeight:'250px',
   width: 'auto',
   height: 'auto',
 }
@@ -36,7 +36,7 @@ function App() {
     <Main>
       <div style={homeStyles}>
         <h1>warz mate</h1>
-        <p style={smallerText}>your warzone companion :)</p>
+        <p style={smallerText}>your warzone companion</p>
       </div>
       <img style={homeImgStyles} alt='silouhette of military personnel' src={homeImg}/>
     </Main>
