@@ -1,15 +1,9 @@
 import * as React from 'react'
 import '../layouts/main.css'
 
-//component imports
-import Navbar from "../components/navbar"
-import Content from '../components/content'
+//component import
+import Main from '../components/main';
 
-//responsive container size to view width/height
-const mainStyles = {
-  minHeight: '100vh',
-  minWidth: '100vw'
-}
 //home main content styling
 const homeStyles = {
   width: '100%',
@@ -21,14 +15,11 @@ const homeStyles = {
 
 function App() {
   return (
-    <div style={mainStyles}>
-      <Navbar></Navbar>
-      <Content>
-        <div style={homeStyles}>
-            <h1>Home</h1>
-        </div>
-      </Content>
-    </div>
+    <Main>
+      <div style={homeStyles}>
+        <h1>Home</h1>
+      </div>
+    </Main>
   );
 }
 

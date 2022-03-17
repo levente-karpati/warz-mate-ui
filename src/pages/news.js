@@ -1,14 +1,8 @@
 import * as React from 'react'
 
-//component imports
-import Navbar from "../components/navbar"
-import Content from '../components/content'
+//component import
+import Main from '../components/main';
 
-//responsive container size to view width/height
-const mainStyles = {
-    minHeight: '100vh',
-    minWidth: '100vw'
-}
 //news main styling
 const newsMainStyles = {
     width: '100%',
@@ -20,14 +14,11 @@ const newsMainStyles = {
 
 function News() {
   return (
-    <div style={mainStyles}>
-      <Navbar></Navbar>
-      <Content>
-        <div style={newsMainStyles}>
-            <h1>News</h1>
-        </div>
-      </Content>
-    </div>
+    <Main>
+      <div style={newsMainStyles}>
+        <h1>News</h1>
+      </div>
+    </Main>
   );
 }
 
