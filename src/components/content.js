@@ -3,17 +3,13 @@ import * as React from 'react';
 //content container styling
 const contentStyles = {
     width: '100%',
-    height: '95vh',
-    display: 'flex',
-    backgroundColor: 'green'
+    height: '95vh'
 }
 
-const Content = () => {
-    return (
-        <div style={contentStyles}>
-           
-        </div>
-    )
+export default function Content({ children }) {
+  return (
+    <div style={contentStyles}>
+      {children}
+    </div>
+  )
 }
-
-export default Content
