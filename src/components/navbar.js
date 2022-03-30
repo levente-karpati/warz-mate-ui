@@ -31,7 +31,7 @@ const StyledLink = styled(props => <Link {...props} />)`
 `;
 
 //component is the container for the navbar - used in the Main component
-const Navbar = () => {
+export default function Navbar(){
     return (
         <div style={navStyles}>
             <StyledLink to="/">
@@ -46,5 +46,3 @@ const Navbar = () => {
         </div>
     )
 }
-
-export default Navbar
