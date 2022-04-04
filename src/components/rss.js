@@ -27,9 +27,20 @@ const newsStyling = {
   border: '1px solid black'
 }
 
-//news item styling
-const newsItemStyling = {
-  width: '50%',
+//news title styling
+const newsTitleStyling = {
+  width: '70%',
+  height: '100%',
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  textDecoration: 'none',
+  color: 'black'
+}
+
+//news date styling
+const newsDateStyling = {
+  width: '30%',
   height: '100%',
   display: 'flex',
   justifyContent: 'center',
@@ -38,14 +49,24 @@ const newsItemStyling = {
   color: 'black'
 }
 
-const newsHeaderStyling = {
-  width: '50%',
+const newsHeaderTitleStyling = {
+  width: '70%',
   height: "100%",
   border: "1px solid black",
   display: 'flex',
   justifyContent: "center",
   alignItems: 'center'
 }
+
+const newsHeaderDateStyling = {
+  width: '30%',
+  height: "100%",
+  border: "1px solid black",
+  display: 'flex',
+  justifyContent: "center",
+  alignItems: 'center'
+}
+
 class Rss extends React.Component  {
   //set default state
   constructor(props) {
@@ -116,10 +137,10 @@ class Rss extends React.Component  {
       <div style={newsMainStyles}>
         <div style={rssContainer}>
         <li style={newsStyling}>
-          <OnHover style={newsHeaderStyling} onClick={() => this.dataSort(0)}>
+          <OnHover style={newsHeaderTitleStyling} onClick={() => this.dataSort(0)}>
             Title
           </OnHover>
-          <OnHover style={newsHeaderStyling} onClick={() => this.dataSort(1)}>
+          <OnHover style={newsHeaderDateStyling} onClick={() => this.dataSort(1)}>
             Date
           </OnHover>
         </li>
@@ -127,8 +148,8 @@ class Rss extends React.Component  {
             //map state date to html
             this.state.data.map(function(item, i){
               return <a key={i} style={newsStyling} href={item.link}>
-                        <OnHover style={newsItemStyling}>{item.title.trim()}</OnHover>
-                        <p style={newsItemStyling}>{item.pubDate.split(" ")[0]}</p>
+                        <OnHover style={newsTitleStyling}>{item.title.trim()}</OnHover>
+                        <p style={newsDateStyling}>{item.pubDate.split(" ")[0]}</p>
                      </a>
             })
           }
