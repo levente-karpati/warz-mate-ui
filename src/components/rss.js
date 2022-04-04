@@ -1,5 +1,6 @@
 import * as React from 'react'
 import axios from 'axios'
+import OnHover from './onhoveritem'
 
 //news main styling
 const newsMainStyles = {
@@ -14,23 +15,45 @@ const rssContainer = {
   height: '100%',
   overflowY: 'scroll'
 }
-//news item styling
-const newsItem = {
+
+const newsStyling = {
   width: '100%',
   height: '10%',
   display: 'flex',
+  flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
-  border: '1px solid black',
+  textDecoration: 'none',
+  border: '1px solid black'
+}
+
+//news item styling
+const newsItemStyling = {
+  width: '50%',
+  height: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   textDecoration: 'none',
   color: 'black'
+}
+
+const newsHeaderStyling = {
+  width: '50%',
+  height: "100%",
+  border: "1px solid black",
+  display: 'flex',
+  justifyContent: "center",
+  alignItems: 'center'
 }
 class Rss extends React.Component  {
   //set default state
   constructor(props) {
     super(props);
     this.state = { 
-      data: [] 
+      data: [],
+      titleSorted: false,
+      dateSorted: false
     };
   }
   //api call using axios for rss feed
@@ -42,20 +65,71 @@ class Rss extends React.Component  {
     .then(function (res) {
       //set component state to response data
       self.setState({data: res.data.items});
+      console.log(self.state.data);
     })
     .catch(function (err) {
       console.log(err);
     });
   }
+  //sort table items
+  dataSort = (col) => {
+    const newTableItems = this.state.data;
+    switch (col) {
+      case 0:
+        //sort by title
+        newTableItems.sort((a,b) => {
+          var aName = a.title.replace("'", "").replace("‘", "");
+          var bName = b.title.replace("'", "").replace("‘", "");
+          if(this.state.titleSorted){
+            this.setState({titleSorted: !this.state.titleSorted});
+            return bName.localeCompare(aName);
+          }
+          else{
+            this.setState({titleSorted: !this.state.titleSorted})
+            return aName.localeCompare(bName);
+          }
+        });
+        break;
+      case 1:
+        //sort by date
+        newTableItems.sort((a,b) => {
+          var aDate = a.pubDate;
+          var bDate = b.pubDate;
+          if(this.state.dateSorted){
+            this.setState({dateSorted: !this.state.dateSorted});
+            return new Date(bDate) - new Date(aDate);
+          }
+          else{
+            this.setState({dateSorted: !this.state.dateSorted})
+            return new Date(aDate) - new Date(bDate);
+          }
+        });
+        break;
+      default:
+        break;
+    }
+    this.setState({data: newTableItems });
+  };
   //render html
   render() {
     return (
       <div style={newsMainStyles}>
         <div style={rssContainer}>
+        <li style={newsStyling}>
+          <OnHover style={newsHeaderStyling} onClick={() => this.dataSort(0)}>
+            Title
+          </OnHover>
+          <OnHover style={newsHeaderStyling} onClick={() => this.dataSort(1)}>
+            Date
+          </OnHover>
+        </li>
           {
             //map state date to html
             this.state.data.map(function(item, i){
-              return <a style={newsItem} href={item.link}><p key={i}>{item.title}</p></a>
+              return <a key={i} style={newsStyling} href={item.link}>
+                        <OnHover style={newsItemStyling}>{item.title.trim()}</OnHover>
+                        <p style={newsItemStyling}>{item.pubDate.split(" ")[0]}</p>
+                     </a>
             })
           }
         </div>
