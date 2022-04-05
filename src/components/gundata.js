@@ -40,18 +40,34 @@ const gunHeaderStyling = {
   justifyContent: "center",
   alignItems: 'center'
 }
+
+const searchBoxStyles = {
+  width: '100%',
+  height: '5%'
+}
 class Gundata extends React.Component  {
   //set default state
   constructor(props) {
     super(props);
     this.state = { 
       data: [],
+      store: [],
       titleSorted: false,
       typeSorted: false,
       pickRatioSorted: false,
       kdRatioSorted: false
     };
   }
+
+  handleChange = (event) => {
+    var searchData = this.state.store.filter(o => o[Object.keys(o)[0]].name.toLowerCase().includes(event.target.value.toLowerCase()));
+    this.setState(
+      {
+        data: [...searchData]
+      }
+    )
+  }
+
   //api call using axios for rss feed
   componentDidMount() {
     //store this in self for access from axios call
@@ -62,10 +78,10 @@ class Gundata extends React.Component  {
       //set component state to response data
       self.setState(
         {
-          data: Object.entries(res.data).map((e) => ( { [e[0]]: e[1] } ))
+          data: Object.entries(res.data).map((e) => ( { [e[0]]: e[1] } )),
+          store: Object.entries(res.data).map((e) => ( { [e[0]]: e[1] } ))
         }
       );
-      console.log(self.state.data);
     })
     .catch(function (err) {
       console.log(err);
@@ -143,11 +159,22 @@ class Gundata extends React.Component  {
     this.setState({data: newTableItems });
   };
 
+  //search table items
+  dataSearch = (col) => {
+
+  }
+
   //render html
   render() {
     return (
       <div style={gunsMainStyles}>
         <div style={dataContainer}>
+          <input 
+          placeholder={"Search for gun by name..."} 
+          style={searchBoxStyles} 
+          type={"text"}
+          value={this.state.input}
+          onChange={this.handleChange}></input>
         <li style={gunStyles}>
           <OnHover style={gunHeaderStyling} onClick={() => this.dataSort(0)}>
             Title
