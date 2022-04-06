@@ -1128,22 +1128,27 @@ const gunsMainStyles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    overflowY: 'scroll'
+    backgroundColor: '#111111'
 }
 //guns embedded container styling
 const dataContainer = {
-  width: '70%',
-  height: 'auto'
+  width: '85%',
+  height: '100%',
+  overflowY: 'scroll',
+  scrollbarColor: 'black',
+  scrollbarWidth: 'thin'
 }
 //gun item styling
 const gunStyles = {
   width: '100%',
-  height: '10%',
+  height: '7%',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
-  border: '1px solid black'
+  border: '1px solid grey',
+  fontSize: '0.8em',
+  backgroundColor: '#b1b5d2'
 }
 const gunPropertyStyling = {
   width: '25%',
@@ -1155,16 +1160,18 @@ const gunPropertyStyling = {
 const gunHeaderStyling = {
   width: '25%',
   height: "100%",
-  border: "1px solid black",
+  border: "1px solid grey",
   display: 'flex',
   justifyContent: "center",
-  alignItems: 'center'
+  alignItems: 'center',
+  backgroundColor: '#8594d6'
 }
 
 const searchBoxStyles = {
   width: '100%',
   height: '5%',
-  fontSize: '2em'
+  fontSize: '1.2em',
+  backgroundColor: 'white'
 }
 class Gundata extends React.Component  {
   //set default state
@@ -1299,6 +1306,9 @@ class Gundata extends React.Component  {
           value={this.state.input}
           onChange={this.handleChange}></input>
         <li style={gunStyles}>
+         <OnHover style={gunHeaderStyling} onClick={() => this.dataSort(0)}>
+            Rank
+          </OnHover>
           <OnHover style={gunHeaderStyling} onClick={() => this.dataSort(0)}>
             Title
           </OnHover>

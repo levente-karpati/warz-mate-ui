@@ -15,3 +15,8 @@ html, body {
     min-width: 100vw;
     font-family: 'Roboto', sans-serif;
 }
+
+body::-webkit-scrollbar-thumb {
+    background-color: black;
+    outline: 1px solid slategrey;
+  }
