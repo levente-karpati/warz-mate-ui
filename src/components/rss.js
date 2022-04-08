@@ -8,23 +8,28 @@ const newsMainStyles = {
     height: '100%',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    backgroundColor: '#111111'
 }
 //news embedded container styling
 const rssContainer = {
-  width: '100%',
+  width: '85%',
   height: '100%',
-  overflowY: 'scroll'
+  overflowY: 'auto'
 }
 
 const newsStyling = {
   width: '100%',
-  height: '10%',
+  height: '7%',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
   textDecoration: 'none',
-  border: '1px solid black'
+  border: '1px solid black',
+  fontSize: '0.8em',
+  backgroundColor: '#b1b5d2'
 }
 
 //news title styling
@@ -55,7 +60,8 @@ const newsHeaderTitleStyling = {
   border: "1px solid black",
   display: 'flex',
   justifyContent: "center",
-  alignItems: 'center'
+  alignItems: 'center',
+  backgroundColor: '#8594d6'
 }
 
 const newsHeaderDateStyling = {
@@ -64,7 +70,8 @@ const newsHeaderDateStyling = {
   border: "1px solid black",
   display: 'flex',
   justifyContent: "center",
-  alignItems: 'center'
+  alignItems: 'center',
+  backgroundColor: '#8594d6'
 }
 
 class Rss extends React.Component  {
@@ -82,7 +89,7 @@ class Rss extends React.Component  {
     //store this in self for access from axios call
     var self = this;
     //use rss2json with google rss api for warzone news data
-    axios.get('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dcall%2Bof%2Bduty%2Bwarzone%26hl%3Den-GB%26gl%3DGB%26ceid%3DGB%3Aen&api_key=vlpqsg5fjf9ogebcmrpoz8hdchihae9nywlrezcy&order_by=pubDate&order_dir=desc&count=100')
+    axios.get('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3DCall%25Of%25Duty%25Warzone%2Bafter%3A2022-01-01%26hl%3Den-GB%26gl%3DGB%26ceid%3DGB%3Aen&api_key=uwnfsei9zt4x3frakmhtzaib6hhwpvf9d4ausxnq&order_by=pubDate&order_dir=desc&count=100')
     .then(function (res) {
       //set component state to response data
       self.setState({data: res.data.items});
@@ -99,8 +106,8 @@ class Rss extends React.Component  {
       case 0:
         //sort by title
         newTableItems.sort((a,b) => {
-          var aName = a.title.replace("'", "").replace("‘", "");
-          var bName = b.title.replace("'", "").replace("‘", "");
+          var aName = a.title.replace("'", "").replace("‘", "").replace('"', "");
+          var bName = b.title.replace("'", "").replace("‘", "").replace('"', "");
           if(this.state.titleSorted){
             this.setState({titleSorted: !this.state.titleSorted});
             return bName.localeCompare(aName);
