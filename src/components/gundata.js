@@ -1306,9 +1306,6 @@ class Gundata extends React.Component  {
           value={this.state.input}
           onChange={this.handleChange}></input>
         <li style={gunStyles}>
-         <OnHover style={gunHeaderStyling} onClick={() => this.dataSort(0)}>
-            Rank
-          </OnHover>
           <OnHover style={gunHeaderStyling} onClick={() => this.dataSort(0)}>
             Title
           </OnHover>
